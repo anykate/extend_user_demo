@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}
+  App | Employee List
+{% endblock %}
+
+{% block content %}
+  <a href="{% url 'app:add' %}" class="btn btn-outline-primary m-3">Add Employee</a>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center mb-3">Employee List</h1>
+      </div>
+      <ul class="list-group list-group-flush">
+        {% for employee in employees %}
+          <li class="list-group-item">
+            <a href="{% url 'app:update' emp_id=employee.id %}" class="text-decoration-none mx-2">
+              {{ employee.user }}
+            </a>
+          </li>
+          {% empty %}
+          <h3 class="display-1">No Employees!!</h3>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}
